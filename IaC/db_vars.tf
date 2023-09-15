@@ -79,9 +79,10 @@ variable "vpc" {
   default = "vpc-081127f235b38e129"
 }
 
-# variable "public_subnet" {
-#   description = "list of subnets to use for ALB"
-# }
+variable "public_subnet" {
+  description = "list of subnets to use for ALB"
+  default = ["subnet-0cbad66394501bebb","subnet-0badd23d2ec609ce9"]  
+}
 
 # variable "private_subnet" {
 #   description = "list of subnets to use for containers"
@@ -97,10 +98,10 @@ variable "db_subnets" {
   default = ["subnet-0cbad66394501bebb","subnet-0badd23d2ec609ce9"]
 }
 
-# variable "internal_alb" {
-#   default     = true
-#   description = "type of ALB to use"
-# }
+variable "internal_alb" {
+  default     = true
+  description = "type of ALB to use"
+}
 
 variable "docker_image" {
   default = "rundeck/rundeck:3.3.12"

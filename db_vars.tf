@@ -44,7 +44,7 @@ variable "db_min_capacity" {
 }
 variable "db_engine_version" {
   description = "The database engine version"
-  default     = "5.6.mysql_aurora.1.22.3"
+  default     = "8.0.mysql_aurora.3.04.0"
 }
 variable "db_auto_pause" {
   description = "Whether to enable auto pause"
@@ -89,12 +89,12 @@ variable "vpc" {
 
 variable "db_azs" {
   description = "list of AZs to use for DB"
-  default = ["euw1-az1"]
+  default = ["eu-west-1a", "eu-west-1b"]
 }
 
 variable "db_subnets" {
   description = "list of subnets to use for db"
-  default = ["subnet-0cbad66394501bebb"]
+  default = ["subnet-0cbad66394501bebb","subnet-0badd23d2ec609ce9"]
 }
 
 # variable "internal_alb" {

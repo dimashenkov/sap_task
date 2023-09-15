@@ -6,7 +6,7 @@ resource "random_string" "snapshot_suffix" {
 resource "aws_rds_cluster" "this" {
   cluster_identifier      = "${var.prefix}-${var.environment}-cluster"
   engine                  = "aurora-mysql"
-  engine_mode             = "serverless"
+  engine_mode             = "provisioned"  # Change this line
   vpc_security_group_ids  = [aws_security_group.db.id]
   db_subnet_group_name    = aws_db_subnet_group.this.name
   engine_version          = var.db_engine_version
@@ -18,17 +18,15 @@ resource "aws_rds_cluster" "this" {
   preferred_backup_window = var.db_backup_window
   copy_tags_to_snapshot   = true
   skip_final_snapshot     = false
-  scaling_configuration {
-    auto_pause               = var.db_auto_pause
-    seconds_until_auto_pause = var.db_seconds_until_auto_pause
-    max_capacity             = var.db_max_capacity
-    min_capacity             = var.db_min_capacity
-  }
+
+  # Remove the scaling_configuration block if not needed for provisioned mode
+
   final_snapshot_identifier = "${var.prefix}-${var.environment}-${random_string.snapshot_suffix.result}"
   lifecycle {
     ignore_changes = [availability_zones]
   }
-}
+}  
+
 
 resource "aws_db_subnet_group" "this" {
   name       = "${var.prefix}-${var.environment}"

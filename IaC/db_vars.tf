@@ -104,7 +104,7 @@ variable "internal_alb" {
 }
 
 variable "docker_image" {
-  default = "rundeck/rundeck:3.3.12"
+  default = "sektasoldier/microblog:latest"
 }
 
 variable "custom_cert_arn" {
@@ -119,4 +119,8 @@ variable "containerinsights" {
 variable "force_new_deployment" {
   default     = false
   description = "Force new deployment of the task definition"
+}
+
+variable "doecker_hub" {
+  default = arn:aws:secretsmanager:eu-west-1:700466996490:secret:registry_secret-ZpgXKx
 }

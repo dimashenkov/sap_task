@@ -174,8 +174,9 @@ resource "aws_ecs_service" "microblog" {
   force_new_deployment  = var.force_new_deployment
 
   network_configuration {
-    security_groups = [aws_security_group.alb.id, aws_security_group.db.id, aws_security_group.microblog-allow.id]
-    subnets         = var.private_subnet
+    security_groups  = [aws_security_group.alb.id, aws_security_group.db.id, aws_security_group.microblog-allow.id]
+    subnets          = var.private_subnet
+    assign_public_ip = true
   }
 
   load_balancer {
@@ -239,11 +240,6 @@ resource "aws_ecs_task_definition" "microblog" {
 CONTAINER_DEFINITION
 }
 
-resource "aws_cloudwatch_log_group" "firelens-container" {
-  name = "${var.prefix}-firelens-container"
-
-  retention_in_days = var.log_retention_in_days
-}
 
 resource "aws_cloudwatch_log_group" "microblog" {
   name = "/${var.prefix}/${var.environment}/fg-task"

@@ -11,7 +11,7 @@ resource "aws_vpc_endpoint" "secrets_manager" {
 }
 
 resource "aws_security_group" "secrets_manager_sg" {
-  vpc_id = var.vpc_id  # Replace with your VPC ID
+  vpc_id = var.vpc  # Replace with your VPC ID
 
   egress {
     from_port   = 0

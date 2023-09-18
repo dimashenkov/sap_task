@@ -1,3 +1,8 @@
+variable "aws_region" {
+  description = "aws region"
+  default     = "eu-west-1"
+}
+
 variable "prefix" {
   description = "Prefix for all the resources to be created. Please note thst 2 allows only lowercase alphanumeric characters and hyphen"
   default     = "microblog"

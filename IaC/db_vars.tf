@@ -76,27 +76,27 @@ variable "task_cpu" {
 
 variable "vpc" {
   description = "vpc"
-  default = "vpc-081127f235b38e129"
+  default     = "vpc-081127f235b38e129"
 }
 
 variable "public_subnet" {
   description = "list of subnets to use for ALB"
-  default = ["subnet-0cbad66394501bebb","subnet-0badd23d2ec609ce9"]  
+  default     = ["subnet-0cbad66394501bebb", "subnet-0badd23d2ec609ce9"]
 }
 
 variable "private_subnet" {
   description = "list of subnets to use for containers"
-  default = ["subnet-0cbad66394501bebb","subnet-0badd23d2ec609ce9"]
+  default     = ["subnet-0cbad66394501bebb", "subnet-0badd23d2ec609ce9"]
 }
 
 variable "db_azs" {
   description = "list of AZs to use for DB"
-  default = ["eu-west-1a", "eu-west-1b"]
+  default     = ["eu-west-1a", "eu-west-1b"]
 }
 
 variable "db_subnets" {
   description = "list of subnets to use for db"
-  default = ["subnet-0cbad66394501bebb","subnet-0badd23d2ec609ce9"]
+  default     = ["subnet-0cbad66394501bebb", "subnet-0badd23d2ec609ce9"]
 }
 
 variable "internal_alb" {

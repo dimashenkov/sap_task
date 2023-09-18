@@ -6,7 +6,7 @@ resource "random_string" "snapshot_suffix" {
 resource "aws_rds_cluster" "this" {
   cluster_identifier      = "${var.prefix}-${var.environment}-cluster"
   engine                  = "aurora-mysql"
-  engine_mode             = "provisioned"  # Change this line
+  engine_mode             = "provisioned" # Change this line
   vpc_security_group_ids  = [aws_security_group.db.id]
   db_subnet_group_name    = aws_db_subnet_group.this.name
   engine_version          = var.db_engine_version
@@ -25,7 +25,7 @@ resource "aws_rds_cluster" "this" {
   lifecycle {
     ignore_changes = [availability_zones]
   }
-}  
+}
 
 
 resource "aws_db_subnet_group" "this" {

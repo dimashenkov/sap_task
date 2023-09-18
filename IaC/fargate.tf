@@ -48,6 +48,14 @@ resource "aws_iam_policy" "task_execution_policy" {
     },
     {
       "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "${aws_cloudwatch_log_group.microblog.arn}"
+    },    
+    {
+      "Effect": "Allow",
       "Action": "secretsmanager:GetSecretValue",
       "Resource": "*"
     }
@@ -216,7 +224,7 @@ resource "aws_ecs_task_definition" "microblog" {
                 },
                 {
                     "name": "DATABASE_URL",
-                    "value": "mysql+pymysql://microblog:$${DATABASE_PASSWORD}@${aws_rds_cluster.this.endpoint}/microblog"
+                    "value": "mysql+pymysql://microblog:microblog@${aws_rds_cluster.this.endpoint}/microblog"
                 }
             ],
       "essential": true,
@@ -234,8 +242,17 @@ resource "aws_ecs_task_definition" "microblog" {
               "containerPort": 5000,
               "protocol": "tcp"
           }
-      ]
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "${aws_cloudwatch_log_group.microblog.name}",
+          "awslogs-region": "${var.aws_region}",
+          "awslogs-stream-prefix": "microblog"
+        }
+      }
   }
+  
 ]
 CONTAINER_DEFINITION
 }

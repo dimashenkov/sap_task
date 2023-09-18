@@ -49,14 +49,13 @@ resource "aws_iam_policy" "task_execution_policy" {
     {
       "Effect": "Allow",
       "Action": "secretsmanager:GetSecretValue",
-      "Resource": [
-        "${local.secrets_path}"
-      ]
+      "Resource": "*"
     }
   ]
-  }
+}
 EOF
 }
+
 
 resource "aws_iam_role_policy_attachment" "task_execution_policy_attach" {
   role       = aws_iam_role.task_execution_role.name
@@ -223,40 +222,14 @@ resource "aws_ecs_task_definition" "microblog" {
       "volumesFrom": [],
       "portMappings": [
           {
-              "hostPort": 8000,
+              "hostPort": 5000,
               "containerPort": 5000,
               "protocol": "tcp"
           }
-      ],     
-  },
-  {
-      "essential": true,
-      "image": "amazon/aws-for-fluent-bit:latest",
-      "name": "log_router",
-      "firelensConfiguration": {
-          "type": "fluentbit"
-      },
-      "cpu": 0,
-      "environment": [],
-      "mountPoints": [],
-      "portMappings": [],
-      "user": "0",
-      "volumesFrom": [],
-      "logConfiguration": {
-          "logDriver": "awslogs",
-          "options": {
-              "awslogs-group": "${var.prefix}-firelens-container",
-              "awslogs-region": "eu-west-1",
-              "awslogs-create-group": "true",
-              "awslogs-stream-prefix": "firelens"
-          }
-      },
-      "memoryReservation": 50
+      ]
   }
 ]
 CONTAINER_DEFINITION
-
-
 }
 
 resource "aws_cloudwatch_log_group" "firelens-container" {

@@ -100,7 +100,7 @@ variable "db_subnets" {
 }
 
 variable "internal_alb" {
-  default     = true
+  default     = false
   description = "type of ALB to use"
 }
 

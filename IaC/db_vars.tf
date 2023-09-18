@@ -10,10 +10,10 @@ variable "prefix" {
 #   description = "The public domian name of the ALB"
 # }
 
-# variable "desired_count" {
-#   description = "The number of instances of fargate tasks to keep running"
-#   default     = "1"
-# }
+variable "desired_count" {
+  description = "The number of instances of fargate tasks to keep running"
+  default     = "1"
+}
 variable "log_retention_in_days" {
   description = "The number of days to retain cloudwatch log"
   default     = "7"
@@ -55,14 +55,14 @@ variable "db_seconds_until_auto_pause" {
   description = "The time in seconds before Aurora DB is paused"
   default     = 300
 }
-# variable "task_memory" {
-#   description = "The amount (in MiB) of memory used by the task"
-#   default     = 4096
-# }
-# variable "task_cpu" {
-#   description = "The number of cpu units used by the task"
-#   default     = 2048
-# }
+variable "task_memory" {
+  description = "The amount (in MiB) of memory used by the task"
+  default     = 512
+}
+variable "task_cpu" {
+  description = "The number of cpu units used by the task"
+  default     = 256
+}
 
 # variable "max_task" {
 #   description = "Maximum number of tasks should the service scale to"
@@ -84,9 +84,10 @@ variable "public_subnet" {
   default = ["subnet-0cbad66394501bebb","subnet-0badd23d2ec609ce9"]  
 }
 
-# variable "private_subnet" {
-#   description = "list of subnets to use for containers"
-# }
+variable "private_subnet" {
+  description = "list of subnets to use for containers"
+  default = ["subnet-0cbad66394501bebb","subnet-0badd23d2ec609ce9"]
+}
 
 variable "db_azs" {
   description = "list of AZs to use for DB"
@@ -121,6 +122,3 @@ variable "force_new_deployment" {
   description = "Force new deployment of the task definition"
 }
 
-variable "doecker_hub" {
-  default = arn:aws:secretsmanager:eu-west-1:700466996490:secret:registry_secret-ZpgXKx
-}

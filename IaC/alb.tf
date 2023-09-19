@@ -65,7 +65,7 @@ module "alb" {
       target_type      = "ip"
       backend_port     = 5000
       health_check = {
-        path                = "/"
+        path                = "/auth/login"
         interval            = 60
         unhealthy_threshold = 5
       }

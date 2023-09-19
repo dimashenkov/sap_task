@@ -122,8 +122,6 @@ resource "aws_security_group" "microblog" {
     protocol        = "tcp"
     security_groups = [aws_security_group.alb.id]
   }
-
-
 }
 
 resource "aws_security_group" "microblog-allow" {
@@ -140,34 +138,11 @@ resource "aws_security_group" "microblog-allow" {
   }
 
   egress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "allow access from microblog container"
-  }
-
-  egress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "allow http access from microblog container"
-  }
-
-  egress {
     from_port   = 5000
     to_port     = 5000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     description = "allow tcp access from microblog container"
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
   }  
 }
 
@@ -196,7 +171,6 @@ resource "aws_ecs_service" "microblog" {
   lifecycle {
     ignore_changes = [desired_count]
   }
-
 }
 
 

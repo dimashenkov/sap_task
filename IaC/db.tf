@@ -35,7 +35,7 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   engine              = "aurora-mysql"
   engine_version      = var.db_engine_version
   db_subnet_group_name= aws_db_subnet_group.this.name
-  publicly_accessible = true  # Make it publicly accessible for test
+  publicly_accessible = false  # Make it publicly accessible for debug
 }
 
 

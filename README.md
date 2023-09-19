@@ -25,3 +25,10 @@ This project deploys a Microblog application on AWS using ECS with Fargate and A
 
 Remember to keep your secrets and sensitive data out of version control. Always use AWS SecretsManager or a similar service to manage them.
 
+## Service Fail-Over
+
+### Auto-recovery for ECS with Fargate
+If a task in ECS fails, the service scheduler launches another instance of the task in the ECS cluster to replace it. This offers inherent fail-over capability.
+
+### Auto-recovery for RDS
+RDS Multi-AZ deployments provide high availability and failover support for DB instances.

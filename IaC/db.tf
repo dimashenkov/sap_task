@@ -28,14 +28,14 @@ resource "aws_rds_cluster" "this" {
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
-  count               = 1  # One instance as an example.
-  identifier          = "${var.prefix}-${var.environment}-instance-${count.index}"
-  cluster_identifier  = aws_rds_cluster.this.id
-  instance_class      = "db.r5.large"  # Smallest instance type.
-  engine              = "aurora-mysql"
-  engine_version      = var.db_engine_version
-  db_subnet_group_name= aws_db_subnet_group.this.name
-  publicly_accessible = false  # Make it publicly accessible for debug
+  count                = 1 # One instance as an example.
+  identifier           = "${var.prefix}-${var.environment}-instance-${count.index}"
+  cluster_identifier   = aws_rds_cluster.this.id
+  instance_class       = "db.r5.large" # Smallest instance type.
+  engine               = "aurora-mysql"
+  engine_version       = var.db_engine_version
+  db_subnet_group_name = aws_db_subnet_group.this.name
+  publicly_accessible  = false # Make it publicly accessible for debug
 }
 
 
@@ -54,9 +54,9 @@ resource "aws_security_group" "db" {
     self      = true
   }
   ingress {
-    protocol  = "tcp"
-    from_port = 3306
-    to_port   = 3306
+    protocol    = "tcp"
+    from_port   = 3306
+    to_port     = 3306
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {

@@ -143,7 +143,7 @@ resource "aws_security_group" "microblog-allow" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
     description = "allow tcp access from microblog container"
-  }  
+  }
 }
 
 resource "aws_ecs_service" "microblog" {
@@ -230,12 +230,12 @@ resource "aws_ecs_task_definition" "microblog" {
   
 ]
 CONTAINER_DEFINITION
-  depends_on = [aws_rds_cluster_instance.cluster_instances]
+  depends_on               = [aws_rds_cluster_instance.cluster_instances]
 }
 
 
 resource "aws_cloudwatch_log_group" "microblog" {
-  name = "/${var.prefix}/${var.environment}/fg-task"
+  name              = "/${var.prefix}/${var.environment}/fg-task"
   retention_in_days = var.log_retention_in_days
 }
 

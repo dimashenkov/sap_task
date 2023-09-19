@@ -93,8 +93,6 @@ resource "aws_iam_role" "task_role" {
 EOF
 }
 
-
-
 resource "aws_ecs_cluster" "this" {
   name = "${var.prefix}-${var.environment}"
 
@@ -173,7 +171,6 @@ resource "aws_ecs_service" "microblog" {
   }
   depends_on = [aws_rds_cluster_instance.cluster_instances]
 }
-
 
 resource "aws_ecs_task_definition" "microblog" {
   family                   = "${var.prefix}-${var.environment}"

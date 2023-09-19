@@ -33,3 +33,6 @@ For ECS with Fargate: You can simulate a failure by stopping a task, and then sh
 
 ### Auto-recovery for RDS
 RDS Multi-AZ deployments provide high availability and failover support for DB instances.
+
+<h4>Architecture Diagram</h4>
+![Task Architecture Diagram](./Architecture.png "Task Architecture Diagram")

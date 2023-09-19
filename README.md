@@ -1,38 +1,51 @@
 # Terraform AWS Microblog Deployment
 
-This project deploys a Microblog application on AWS using ECS with Fargate and Aurora RDS.
+This project deploys the Microblog application on AWS using ECS with Fargate and Aurora RDS.
 
 ## Overview
 
-1. **Docker Hub:** Microblog application image is hosted on Docker Hub.
-2. **ALB:** Application Load Balancer handling incoming traffic.
-3. **ECS with Fargate:** Scalable, serverless containerized deployment.
-4. **Aurora RDS:** Managed relational database service for the application.
+- **Docker Hub:** Hosts the Microblog application image.
+- **ALB:** An Application Load Balancer that manages incoming traffic.
+- **ECS with Fargate:** Provides scalable, serverless containerized deployment.
+- **Aurora RDS:** A managed relational database service utilized by the application.
+
+## Prerequisites
+
+- AWS account with necessary permissions.
+- Terraform (specific version or higher recommended).
+- The Microblog application image available on Docker Hub.
 
 ## Key Resources
 
-- **Security Groups:** Define traffic rules for ALB and Microblog containers.
-- **IAM Roles:** Task execution and task roles for permissions.
-- **SecretsManager:** Manages sensitive data like database passwords and registry tokens.
-- **CloudWatch Log Groups:** For logging ECS task executions.
+- **Security Groups:** Set traffic rules for the ALB and Microblog containers.
+- **IAM Roles:** Includes task execution and task roles for resource permissions.
+- **SecretsManager:** Handles sensitive data, such as database passwords and registry tokens.
+- **CloudWatch Log Groups:** Logs ECS task executions.
 
 ## Quickstart
 
-1. **Setup Terraform**: Install Terraform and initialize the project.
-2. **Configure Secrets**: Ensure all secrets in AWS SecretsManager are correctly set up.
-3. **Verify Docker Hub Image**: Ensure the Microblog application image is available on Docker Hub.
-4. **Deploy**: Run `terraform apply` to deploy resources on AWS.
+1. **Setup Terraform**: Install the recommended Terraform version and initialize your project using `terraform init`.
+2. **Configure Secrets**: Set up all required secrets in AWS SecretsManager. Follow [this guide](#) for specific instructions (replace with the actual link if available).
+3. **Verify Docker Hub Image**: Confirm the availability of the Microblog application image on Docker Hub.
+4. **Deploy**: Execute `terraform apply` to deploy resources on AWS.
 
-Remember to keep your secrets and sensitive data out of version control. Always use AWS SecretsManager or a similar service to manage them.
+🔒 **Security Tip**: Always manage secrets and sensitive data using AWS SecretsManager or similar services. Never commit them directly to version control.
 
 ## Service Fail-Over
 
 ### Auto-recovery for ECS with Fargate
-If a task in ECS fails, the service scheduler launches another instance of the task in the ECS cluster to replace it. This offers inherent fail-over capability.
-For ECS with Fargate: You can simulate a failure by stopping a task, and then showcase how ECS automatically launches a new task to replace the failed one
+
+If a task in ECS stops unexpectedly, the service scheduler launches a replacement in the ECS cluster. This mechanism provides inherent fail-over support. You can simulate a task failure by stopping it manually and observing how ECS automatically initiates a replacement.
 
 ### Auto-recovery for RDS
-RDS Multi-AZ deployments provide high availability and failover support for DB instances.
 
-<h4>Architecture Diagram</h4>
-![Task Architecture Diagram](./Architecture.png "Task Architecture Diagram")
+RDS with Multi-AZ deployments ensures high availability and failover support for DB instances.
+
+## Architecture Diagram
+
+![Task Architecture Diagram](./Architecture.png "Microblog Deployment Architecture")
+
+## Cleanup
+
+To remove deployed resources and avoid incurring additional costs, run `terraform destroy`.
+

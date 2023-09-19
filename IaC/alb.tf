@@ -26,7 +26,6 @@ resource "aws_security_group" "alb" {
 
 }
 
-
 module "alb" {
   source             = "terraform-aws-modules/alb/aws"
   version            = "~> 5.0"

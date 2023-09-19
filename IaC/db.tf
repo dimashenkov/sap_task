@@ -38,7 +38,6 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   publicly_accessible  = false # Make it publicly accessible for debug
 }
 
-
 resource "aws_db_subnet_group" "this" {
   name       = "${var.prefix}-${var.environment}"
   subnet_ids = var.db_subnets
@@ -53,11 +52,11 @@ resource "aws_security_group" "db" {
     to_port   = 3306
     self      = true
   }
-  ingress {
-    protocol    = "tcp"
-    from_port   = 3306
-    to_port     = 3306
-    cidr_blocks = ["0.0.0.0/0"]
+ ingress {
+    protocol        = "tcp"
+    from_port       = 3306
+    to_port         = 3306
+    security_groups = [aws_security_group.microblog.id]  # allowing access from microblog security group
   }
   egress {
     protocol    = "-1"

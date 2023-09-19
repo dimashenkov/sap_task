@@ -8,13 +8,6 @@ variable "prefix" {
   default     = "microblog"
 }
 
-# variable "site_domain" {
-#   description = "The primary domain name of the website"
-# }
-# variable "alb_domain" {
-#   description = "The public domian name of the ALB"
-# }
-
 variable "desired_count" {
   description = "The number of instances of fargate tasks to keep running"
   default     = "1"
@@ -69,16 +62,6 @@ variable "task_cpu" {
   default     = 256
 }
 
-# variable "max_task" {
-#   description = "Maximum number of tasks should the service scale to"
-#   default     = "2"
-# }
-
-# variable "min_task" {
-#   description = "Minimum number of tasks should the service always maintain"
-#   default     = "1"
-# }
-
 variable "vpc" {
   description = "vpc"
   default     = "vpc-081127f235b38e129"
@@ -120,7 +103,6 @@ variable "custom_cert_arn" {
 variable "containerinsights" {
   default = "disabled"
 }
-
 
 variable "force_new_deployment" {
   default     = false

@@ -29,6 +29,7 @@ Remember to keep your secrets and sensitive data out of version control. Always 
 
 ### Auto-recovery for ECS with Fargate
 If a task in ECS fails, the service scheduler launches another instance of the task in the ECS cluster to replace it. This offers inherent fail-over capability.
+For ECS with Fargate: You can simulate a failure by stopping a task, and then showcase how ECS automatically launches a new task to replace the failed one
 
 ### Auto-recovery for RDS
 RDS Multi-AZ deployments provide high availability and failover support for DB instances.

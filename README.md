@@ -12,7 +12,7 @@ This project deploys the Microblog application on AWS using ECS with Fargate and
 ## Prerequisites
 
 - AWS account with necessary permissions.
-- Terraform (specific version or higher recommended).
+- Terraform v1.4.4.
 - The Microblog application image available on Docker Hub.
 
 ## Key Resources

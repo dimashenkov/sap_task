@@ -42,6 +42,11 @@ If a task in ECS stops unexpectedly, the service scheduler launches a replacemen
 ### Auto-recovery for RDS
 
 RDS with Multi-AZ deployments ensures high availability and failover support for DB instances.
+   - a. Navigate to the Amazon RDS Console.
+   - b. Choose Databases, and then select your Aurora database cluster.
+   - c. In the Aurora Replicas section, you'll see your replicas listed.
+   - d. Choose one of the replicas.
+   - e. Choose the Actions button and then choose Failover
 
 ## Architecture Diagram
 

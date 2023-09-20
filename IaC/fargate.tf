@@ -193,7 +193,7 @@ resource "aws_ecs_task_definition" "microblog" {
       "name": "microblog",
       "image": "${var.docker_image}",
       "repositoryCredentials": {
-          "credentialsParameter": "${data.aws_secretsmanager_secret_version.registry_docker_hub_secret.arn}"
+          "credentialsParameter": "${data.aws_secretsmanager_secret_version.registry_docker_hub_credentials.arn}"
       },
       "cpu": 0,
       "mountPoints": [],

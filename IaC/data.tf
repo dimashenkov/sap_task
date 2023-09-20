@@ -10,6 +10,6 @@ data "aws_secretsmanager_secret_version" "db_credentials" {
   secret_id = "arn:aws:secretsmanager:eu-west-1:700466996490:secret:db_credentials-WShNB4" # replace with the secret ID or ARN
 }
 
-data "aws_secretsmanager_secret_version" "registry_docker_hub_secret" {
-  secret_id = "arn:aws:secretsmanager:eu-west-1:700466996490:secret:registry_docker_hub_secret-4tP2zO" # replace with the secret ID or ARN
+data "aws_secretsmanager_secret_version" "registry_docker_hub_credentials" {
+  secret_id = "arn:aws:secretsmanager:eu-west-1:700466996490:secret:registry_docker_hub_credentials-mChu3P" # replace with the secret ID or ARN
 }

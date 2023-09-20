@@ -28,7 +28,7 @@ resource "aws_rds_cluster" "this" {
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
-  count                = 1 # One instance as an example.
+  count                = 2 # One instance as an example.
   identifier           = "${var.prefix}-${var.environment}-instance-${count.index}"
   cluster_identifier   = aws_rds_cluster.this.id
   instance_class       = "db.r5.large" # Smallest instance type.

@@ -27,7 +27,7 @@ This project deploys the Microblog application on AWS using ECS with Fargate and
 1. **Setup Terraform**: Install the recommended Terraform version and initialize your project using `terraform init`.
 2. **Configure Secrets**: Set up all required secrets in AWS SecretsManager.
    - Create db_credentials with your database username and password.
-   - Create registry_docker_hub_credentials for accessing your Docker Hub image.
+   - Create registry_docker_hub_credentials, username and password for accessing your Docker Hub image.
 3. **Verify Docker Hub Image**: Confirm the availability of the Microblog application image on Docker Hub.
 4. **Deploy**: Execute `terraform apply` to deploy resources on AWS.
 

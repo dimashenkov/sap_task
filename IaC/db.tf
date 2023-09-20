@@ -28,7 +28,7 @@ resource "aws_rds_cluster" "this" {
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
-  count                = 2 # One instance as an example.
+  count                = 2 # To simulate an Aurora failover, you'd typically have more than one replica in your Aurora cluster, so that if the primary instance fails (or you manually trigger a failover), one of the replicas can be promoted to become the new primary instance.
   identifier           = "${var.prefix}-${var.environment}-instance-${count.index}"
   cluster_identifier   = aws_rds_cluster.this.id
   instance_class       = "db.r5.large" # Smallest instance type.

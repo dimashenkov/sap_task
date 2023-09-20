@@ -1,5 +1,6 @@
 locals {
   secrets_path = replace(data.aws_secretsmanager_secret.registry_token.arn, "/registry_.*/", "*")
+  db_credentials = jsondecode(data.aws_secretsmanager_secret_version.db_credentials.secret_string)
 }
 
 
@@ -183,12 +184,6 @@ resource "aws_ecs_task_definition" "microblog" {
   container_definitions    = <<CONTAINER_DEFINITION
 [
   {
-      "secrets": [
-          {
-              "name": "DATABASE_PASSWORD",
-              "valueFrom": "${data.aws_secretsmanager_secret_version.db_password_secret.arn}"
-          }
-      ],
       "environment": [
                 {
                     "name": "SECRET_KEY",
@@ -196,7 +191,7 @@ resource "aws_ecs_task_definition" "microblog" {
                 },
                 {
                     "name": "DATABASE_URL",
-                    "value": "mysql+pymysql://microblog:microblog@${aws_rds_cluster.this.endpoint}/microblog"
+                    "value": "mysql+pymysql://${local.db_credentials["username"]}:${local.db_credentials["password"]}@${aws_rds_cluster.this.endpoint}/microblog"
                 }
             ],
       "essential": true,

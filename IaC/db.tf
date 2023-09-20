@@ -11,8 +11,8 @@ resource "aws_rds_cluster" "this" {
   db_subnet_group_name    = aws_db_subnet_group.this.name
   engine_version          = var.db_engine_version
   availability_zones      = var.db_azs
-  database_name           = "microblog"
-  master_username         = "microblog"
+  database_name           = local.db_credentials["username"]
+  master_username         = local.db_credentials["password"]
   master_password         = "microblog"
   backup_retention_period = var.db_backup_retention_days
   preferred_backup_window = var.db_backup_window

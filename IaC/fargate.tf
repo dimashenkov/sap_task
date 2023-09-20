@@ -3,11 +3,9 @@ locals {
   db_credentials = jsondecode(data.aws_secretsmanager_secret_version.db_credentials.secret_string)
 }
 
-
 # Ref - https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html
 resource "aws_iam_role" "task_execution_role" {
   name = "${var.prefix}-task-execution-role-${var.environment}"
-
 
   assume_role_policy = <<EOF
 {
@@ -65,16 +63,13 @@ resource "aws_iam_policy" "task_execution_policy" {
 EOF
 }
 
-
 resource "aws_iam_role_policy_attachment" "task_execution_policy_attach" {
   role       = aws_iam_role.task_execution_role.name
   policy_arn = aws_iam_policy.task_execution_policy.arn
 }
 
-
 resource "aws_iam_role" "task_role" {
   name = "${var.prefix}-task-role-${var.environment}"
-
 
   assume_role_policy = <<EOF
 {

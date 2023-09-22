@@ -29,7 +29,7 @@ variable "log_retention_in_days" {
 }
 
 variable "environment" {
-  description = "Name of the application environment. e.g. dev, uat,prd"
+  description = "Name of the application environment. e.g. dev,uat,prd"
   default     = "prd"
 }
 

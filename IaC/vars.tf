@@ -1,3 +1,14 @@
+variable "tags" {
+  description = "AWS Tags to add to all resources created (where possible); see https://aws.amazon.com/answers/account-management/aws-tagging-strategies/"
+  type        = map(any)
+  default     = {
+    Name        = "microblog"
+    Owner       = "DevOPs"
+    Service     = "microblog"
+    Environment = "PRD"
+  }
+}
+
 variable "aws_region" {
   description = "aws region"
   default     = "eu-west-1"

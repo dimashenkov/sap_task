@@ -25,6 +25,7 @@ resource "aws_rds_cluster" "this" {
   lifecycle {
     ignore_changes = [availability_zones]
   }
+  tags = var.tags  
 }
 
 resource "aws_rds_cluster_instance" "cluster_instances" {
@@ -36,11 +37,13 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   engine_version       = var.db_engine_version
   db_subnet_group_name = aws_db_subnet_group.this.name
   publicly_accessible  = false # Make it publicly accessible for debug
+  tags = var.tags  
 }
 
 resource "aws_db_subnet_group" "this" {
   name       = "${var.prefix}-${var.environment}"
   subnet_ids = var.db_subnets
+  tags = var.tags  
 }
 
 resource "aws_security_group" "db" {
@@ -68,5 +71,6 @@ resource "aws_security_group" "db" {
   lifecycle {
     create_before_destroy = true
   }
+  tags = var.tags  
 }
 

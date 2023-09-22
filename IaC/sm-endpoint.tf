@@ -8,6 +8,7 @@ resource "aws_vpc_endpoint" "secrets_manager" {
   security_group_ids = [aws_security_group.secrets_manager_sg.id]
 
   private_dns_enabled = true
+  tags = var.tags
 }
 
 resource "aws_security_group" "secrets_manager_sg" {
@@ -26,4 +27,5 @@ resource "aws_security_group" "secrets_manager_sg" {
     protocol    = "tcp"
     cidr_blocks = ["172.31.0.0/20", "172.31.32.0/20"] # Replace with your CIDR blocks
   }
+  tags = var.tags
 }

@@ -23,7 +23,7 @@ resource "aws_security_group" "alb" {
     protocol  = "-1"
     self      = true
   }
-
+  tags = var.tags
 }
 
 module "alb" {
@@ -56,4 +56,6 @@ module "alb" {
       }
     }
   ]
+  tags = var.tags  
 }
+

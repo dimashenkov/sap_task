@@ -23,6 +23,7 @@ resource "aws_iam_role" "task_execution_role" {
   ]
 }
 EOF
+  tags = var.tags
 }
 
 resource "aws_iam_policy" "task_execution_policy" {
@@ -61,11 +62,12 @@ resource "aws_iam_policy" "task_execution_policy" {
   ]
 }
 EOF
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "task_execution_policy_attach" {
   role       = aws_iam_role.task_execution_role.name
-  policy_arn = aws_iam_policy.task_execution_policy.arn
+  policy_arn = aws_iam_policy.task_execution_policy.arn 
 }
 
 resource "aws_iam_role" "task_role" {
@@ -87,6 +89,7 @@ resource "aws_iam_role" "task_role" {
   ]
 }
 EOF
+  tags = var.tags
 }
 
 resource "aws_ecs_cluster" "this" {
@@ -96,6 +99,7 @@ resource "aws_ecs_cluster" "this" {
     name  = "containerInsights"
     value = var.containerinsights
   }
+  tags = var.tags  
 }
 
 resource "aws_security_group" "microblog" {
@@ -116,6 +120,7 @@ resource "aws_security_group" "microblog" {
     protocol        = "tcp"
     security_groups = [aws_security_group.alb.id]
   }
+  tags = var.tags
 }
 
 resource "aws_security_group" "microblog-allow" {
@@ -138,6 +143,7 @@ resource "aws_security_group" "microblog-allow" {
     cidr_blocks = ["0.0.0.0/0"]
     description = "allow tcp access from microblog container"
   }
+  tags = var.tags
 }
 
 resource "aws_ecs_service" "microblog" {
@@ -166,6 +172,7 @@ resource "aws_ecs_service" "microblog" {
     ignore_changes = [desired_count]
   }
   depends_on = [aws_rds_cluster_instance.cluster_instances]
+  tags = var.tags
 }
 
 resource "aws_ecs_task_definition" "microblog" {
@@ -218,11 +225,13 @@ resource "aws_ecs_task_definition" "microblog" {
 ]
 CONTAINER_DEFINITION
   depends_on               = [aws_rds_cluster_instance.cluster_instances]
+  tags = var.tags
 }
 
 
 resource "aws_cloudwatch_log_group" "microblog" {
   name              = "/${var.prefix}/${var.environment}/fg-task"
   retention_in_days = var.log_retention_in_days
+  tags = var.tags
 }
 

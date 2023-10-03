@@ -20,6 +20,6 @@ jobs:
       with:
         image: sektasoldier/microblog
         tags: v1, latest
-        dockerfile: Dockerfile.ci
+        dockerfile: microblog/Dockerfile
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}

@@ -21,6 +21,7 @@ jobs:
         image: sektasoldier/microblog
         tags: v1, latest
         registry: docker.io
-        dockerfile: microblog/Dockerfile
+        directory: microblog/
+        dockerfile: Dockerfile
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}

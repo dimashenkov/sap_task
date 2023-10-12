@@ -135,9 +135,19 @@ variable "scaling_up_cooldown" {
   default     = "60"
 }
 
+variable "scaling_down_cooldown" {
+  description = "The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start (downscaling)"
+  default     = "300"
+}
+
 variable "scaling_up_adjustment" {
   description = " The number of tasks by which to scale, when the upscaling parameters are breached"
   default     = "1"
+}
+
+variable "scaling_down_adjustment" {
+  description = " The number of tasks by which to scale (negative for downscaling), when the downscaling parameters are breached"
+  default     = "-1"
 }
 
 variable "max_task" {

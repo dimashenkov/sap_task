@@ -9,6 +9,10 @@ This project deploys the Microblog application on AWS using ECS with Fargate and
 - **ECS with Fargate:** Provides scalable, serverless containerized deployment.
 - **Aurora RDS:** A managed relational database service utilized by the application.
 
+## Continuous Integration with GitHub Actions
+
+This project utilizes GitHub Actions to automate the building of the Docker image for the Microblog application. On every push to the main branch, GitHub Actions is triggered to build a fresh Docker image and then push it to Docker Hub. This ensures that the latest changes are always available for deployment.
+
 ## Prerequisites
 
 - AWS account with necessary permissions.

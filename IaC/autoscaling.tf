@@ -34,7 +34,6 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_low" {
   alarm_actions = [aws_appautoscaling_policy.scale_down.arn]
 }
 
-
 resource "aws_appautoscaling_target" "this" {
   max_capacity       = var.max_task
   min_capacity       = var.min_task

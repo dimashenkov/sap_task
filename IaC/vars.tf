@@ -120,3 +120,32 @@ variable "force_new_deployment" {
   description = "Force new deployment of the task definition"
 }
 
+variable "task_cpu_high_threshold" {
+  description = "The CPU value above which downscaling kicks in"
+  default     = "75"
+}
+
+variable "task_cpu_low_threshold" {
+  description = "The CPU value below which downscaling kicks in"
+  default     = "30"
+}
+
+variable "scaling_up_cooldown" {
+  description = "The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start (upscaling)"
+  default     = "60"
+}
+
+variable "scaling_up_adjustment" {
+  description = " The number of tasks by which to scale, when the upscaling parameters are breached"
+  default     = "1"
+}
+
+variable "max_task" {
+  description = "Maximum number of tasks should the service scale to"
+  default     = "2"
+}
+
+variable "min_task" {
+  description = "Minimum number of tasks should the service always maintain"
+  default     = "1"
+}

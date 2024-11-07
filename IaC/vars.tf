@@ -3,7 +3,7 @@ variable "tags" {
   type        = map(any)
   default     = {
     Name        = "microblog"
-    Owner       = "DevOPs"
+    Owner       = "DevOps"
     Service     = "microblog"
     Environment = "PRD"
   }
